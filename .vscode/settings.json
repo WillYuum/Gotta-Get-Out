@@ -1,56 +1,135 @@
-﻿{
-    "files.exclude":
-    {
-        "**/.DS_Store":true,
-        "**/.git":true,
-        "**/.gitignore":true,
-        "**/.gitmodules":true,
-        "**/*.booproj":true,
-        "**/*.pidb":true,
-        "**/*.suo":true,
-        "**/*.user":true,
-        "**/*.userprefs":true,
-        "**/*.unityproj":true,
-        "**/*.dll":true,
-        "**/*.exe":true,
-        "**/*.pdf":true,
-        "**/*.mid":true,
-        "**/*.midi":true,
-        "**/*.wav":true,
-        "**/*.gif":true,
-        "**/*.ico":true,
-        "**/*.jpg":true,
-        "**/*.jpeg":true,
-        "**/*.png":true,
-        "**/*.psd":true,
-        "**/*.tga":true,
-        "**/*.tif":true,
-        "**/*.tiff":true,
-        "**/*.3ds":true,
-        "**/*.3DS":true,
-        "**/*.fbx":true,
-        "**/*.FBX":true,
-        "**/*.lxo":true,
-        "**/*.LXO":true,
-        "**/*.ma":true,
-        "**/*.MA":true,
-        "**/*.obj":true,
-        "**/*.OBJ":true,
-        "**/*.asset":true,
-        "**/*.cubemap":true,
-        "**/*.flare":true,
-        "**/*.mat":true,
-        "**/*.meta":true,
-        "**/*.prefab":true,
-        "**/*.unity":true,
-        "build/":true,
-        "Build/":true,
-        "Library/":true,
-        "library/":true,
-        "obj/":true,
-        "Obj/":true,
-        "ProjectSettings/":true,
-        "temp/":true,
-        "Temp/":true
+{
+  "todo-tree.general.tags": [
+    "TODO",
+    "LOCALE",
+    "ANALYTICS",
+    "FIXME",
+    "WARNING",
+    "NOTE",
+    "TESTME",
+    "REVIEW",
+    "!"
+  ],
+  "todo-tree.highlights.defaultHighlight": {
+    // "icon": "alert",
+    "type": "text-and-comment",
+    "foreground": "white",
+    // "background": "white",
+    // "opacity": 50,
+    "iconColour": "white"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "icon": "verified",
+      "foreground": "green",
+      "iconColour": "green"
+      // "type": "line"
+    },
+    "REVIEW": {
+      "icon": "text-size",
+      "foreground": "#2DB8DD",
+      "iconColour": "#FFFFFF"
+    },
+    "!": {
+      "icon": "verified",
+      "foreground": "green",
+      "iconColour": "green"
+      // "type": "line"
+    },
+    "LOCALE": {
+      "icon": "text-size",
+      "foreground": "#FF69B4",
+      "iconColour": "#FF69B4"
+      // "type": "line"
+    },
+    "ANALYTICS": {
+      "icon": "radio-tower",
+      "foreground": "#ADD8E6",
+      "iconColour": "#ADD8E6"
+      // "type": "line"
+    },
+    "WARNING": {
+      "foreground": "yellow",
+      "iconColour": "yellow",
+      "icon": "alert"
+    },
+    "FIXME": {
+      "foreground": "red",
+      "iconColour": "red",
+      "icon": "flame"
+    },
+    "NOTE": {
+      "iconColour": "#FFC0CB",
+      "icon": "note",
+      "foreground": "#FFC0CB"
+      // "background": "white",
+    },
+    "TESTME": {
+      "iconColour": "#FFA500",
+      "icon": "unverified",
+      "foreground": "#FFA500"
+      // "background": "white",
     }
+  },
+  "todo-tree.filtering.excludeGlobs": ["**/*creator.d.ts"],
+  "todo-tree.tree.hideIconsWhenGroupedByTag": true,
+  "todo-tree.regex.regex": "((//|#|<!--|-- |;|/\\*|^)\\s*($TAGS)|^\\s*- \\[ \\])",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "todo-tree.tree.flat": true,
+  "todo-tree.tree.grouped": true,
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/.gitmodules": true,
+    "**/*.booproj": true,
+    "**/*.pidb": true,
+    "**/*.suo": true,
+    "**/*.user": true,
+    "**/*.userprefs": true,
+    "**/*.unityproj": true,
+    "**/*.dll": true,
+    "**/*.exe": true,
+    "**/*.pdf": true,
+    "**/*.mid": true,
+    "**/*.midi": true,
+    "**/*.wav": true,
+    "**/*.gif": true,
+    "**/*.ico": true,
+    "**/*.jpg": true,
+    "**/*.jpeg": true,
+    "**/*.png": true,
+    "**/*.psd": true,
+    "**/*.tga": true,
+    "**/*.tif": true,
+    "**/*.tiff": true,
+    "**/*.3ds": true,
+    "**/*.3DS": true,
+    "**/*.fbx": true,
+    "**/*.FBX": true,
+    "**/*.lxo": true,
+    "**/*.LXO": true,
+    "**/*.ma": true,
+    "**/*.MA": true,
+    "**/*.obj": true,
+    "**/*.OBJ": true,
+    "**/*.asset": true,
+    "**/*.cubemap": true,
+    "**/*.flare": true,
+    "**/*.mat": true,
+    "**/*.meta": true,
+    "**/*.prefab": true,
+    "**/*.unity": true,
+    "build/": true,
+    "Build/": true,
+    "Library/": true,
+    "library/": true,
+    "obj/": true,
+    "Obj/": true,
+    "ProjectSettings/": true,
+    "temp/": true,
+    "Temp/": true
+  }
 }
