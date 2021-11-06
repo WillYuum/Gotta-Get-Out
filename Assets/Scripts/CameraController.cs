@@ -5,9 +5,9 @@ using DG.Tweening;
 public class CameraController : MonoBehaviourSingleton<CameraController>
 {
 
-    void Awake()
+    void Start()
     {
-        FitOrthoSizeToPlatformSize();
+        // FitOrthoSizeToPlatformSize();
     }
 
 
@@ -22,8 +22,9 @@ public class CameraController : MonoBehaviourSingleton<CameraController>
 
     private void FitOrthoSizeToPlatformSize()
     {
-        Vector2 platformSize = MapController.instance.GetGeneralPlatformSize();
-        Camera.main.orthographicSize = platformSize.x * Screen.height / Screen.width * 0.5f;
+        Vector3 platformSize = MapController.instance.GetGeneralPlatformSize();
+        print("Platform size " + platformSize);
+        Camera.main.orthographicSize = 7 * Screen.height / Screen.width * 0.5f;
     }
 
 }

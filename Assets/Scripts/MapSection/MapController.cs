@@ -23,8 +23,8 @@ public class MapController : MonoBehaviourSingleton<MapController>
 
     void Start()
     {
-        // levelCounter = new CounterController(allLevels.items.Length);
-        // AssignFirstSpawnedRoad();
+        levelCounter = new CounterController(allLevels.items.Length);
+        AssignFirstSpawnedRoad();
     }
 
     private void AssignFirstSpawnedRoad()

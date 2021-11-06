@@ -4,9 +4,9 @@ using UnityEngine.Events;
 
 public class ColliderController : MonoBehaviour
 {
-    [HideInInspector] public UnityEvent<Collider2D> onTriggerEnter;
+    [HideInInspector] public UnityEvent<Collider> onTriggerEnter;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         onTriggerEnter.Invoke(other);
     }

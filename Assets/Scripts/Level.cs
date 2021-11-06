@@ -11,7 +11,7 @@ public class Level : MonoBehaviour
 
     public void SetPosAfterPrevLevel(Vector2 prevLevelPos)
     {
-        float newXPos = prevLevelPos.x - 23.0f;
+        float newXPos = prevLevelPos.x - 7.0f;
         transform.position = new Vector2(newXPos, prevLevelPos.y);
     }
 }

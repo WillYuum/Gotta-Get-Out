@@ -1,22 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
 
     [SerializeField] private ColliderController enterNextPlatformCollider;
-
-    [SerializeField] private SpriteRenderer spriteComp;
-    [SerializeField] private Transform enterPos;
+    [SerializeField] private Transform playerStartPos;
+    private MeshFilter meshFilterComp;
 
 
     void Awake()
     {
+        meshFilterComp = gameObject.GetComponent<MeshFilter>();
         enterNextPlatformCollider.onTriggerEnter.AddListener(OnLeavePlatform);
     }
 
-    private void OnLeavePlatform(Collider2D other)
+    private void OnLeavePlatform(Collider other)
     {
         if (other.gameObject == Player.instance.gameObject)
         {
@@ -25,14 +23,7 @@ public class Platform : MonoBehaviour
         }
     }
 
+    public Vector2 GetEnterPos() => playerStartPos.position;
 
-    public void SetPosAfterPrevPlatform(Vector2 prevPlatformPos)
-    {
-        float newXPos = prevPlatformPos.x - 13.0f;
-        transform.position = new Vector2(newXPos, prevPlatformPos.y);
-    }
-
-    public Vector2 GetEnterPos() => enterPos.position;
-
-    public Vector2 GetPlatformSize() => spriteComp.bounds.size;
+    public Vector2 GetPlatformSize() => gameObject.GetComponent<MeshFilter>().sharedMesh.bounds.size;
 }
