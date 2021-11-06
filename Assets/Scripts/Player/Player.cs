@@ -15,12 +15,12 @@ public class Player : MonoBehaviourSingleton<Player>
     [SerializeField] private DelayController dashDelayer;
     [SerializeField] private float moveSpeed = 3.0f;
 
-    private Rigidbody2D rb;
+    private Rigidbody rb;
 
 
     void Awake()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
 
@@ -36,7 +36,7 @@ public class Player : MonoBehaviourSingleton<Player>
         float horizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float vertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-        transform.position += new Vector3(horizontal, vertical, 0);
+        transform.position += new Vector3(horizontal, 0, vertical);
 
         dashDelayer.IncrementTimer(out bool isFinishedDelay);
 
@@ -65,7 +65,7 @@ public class Player : MonoBehaviourSingleton<Player>
                         horizontal = 1;
                     }
 
-                    rb.velocity = new Vector2(horizontal, vertical) * dashForce;
+                    rb.velocity = new Vector3(horizontal, 0, vertical) * dashForce;
                     dashDelayer.ResetTimer();
                     StartCoroutine(StopDashEffect(.3f));
                 }
@@ -78,9 +78,10 @@ public class Player : MonoBehaviourSingleton<Player>
         while (GameLoopManager.instance.GameIsOn)
         {
             yield return new WaitForSeconds(delay);
-            rb.velocity = Vector2.zero;
+            rb.velocity = Vector3.zero;
         }
     }
+
 
     public void MoveToNextPlatform()
     {
