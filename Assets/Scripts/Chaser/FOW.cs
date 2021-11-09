@@ -33,7 +33,7 @@ namespace Chaser
         void Update()
         {
             fowVision.SetOrigin(transform.position);
-            fowVision.SetAimDirection(transform.parent.up);
+            fowVision.SetAimDirection(transform.parent.forward);
         }
 
 
@@ -70,8 +70,8 @@ namespace Chaser
             for (int i = 0; i < targetsInViewRadius.Length; i++)
             {
                 Transform target = targetsInViewRadius[i].transform;
-                Vector2 dirToTarget = (target.position - transform.position).normalized;
-                if (Vector2.Angle(transform.up, dirToTarget) < viewAngle / 2)
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+                if (Vector2.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
                     float dstToTarget = Vector2.Distance(transform.position, target.position);
 
@@ -93,7 +93,11 @@ namespace Chaser
 
         public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal = false)
         {
-            return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 0);
+            if (!angleIsGlobal)
+            {
+                angleInDegrees += transform.eulerAngles.y;
+            }
+            return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Chaser
             Transform playerTransform = Player.instance.transform;
             transform.up = playerTransform.position - transform.position;
 
-            if (Vector2.Distance(transform.position, playerTransform.position) < 1f)
+            if (Vector3.Distance(transform.position, playerTransform.position) < 1f)
             {
                 GameLoopManager.instance.LoseGame();
             }

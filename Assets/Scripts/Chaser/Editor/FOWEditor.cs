@@ -8,17 +8,14 @@ public class FieldOfViewEditor : Editor
     void OnSceneGUI()
     {
         FOW fow = (FOW)target;
-        Handles.color = Color.magenta;
 
-        Handles.DrawWireArc(fow.transform.position, Vector3.forward, Vector3.up, 360, fow.viewRadius);
+        Handles.color = Color.white;
+        Handles.DrawWireArc(fow.transform.position, Vector3.up, Vector3.forward, 360, fow.viewRadius);
+        Vector3 viewAngleA = fow.DirFromAngle(-fow.viewAngle / 2, false);
+        Vector3 viewAngleB = fow.DirFromAngle(fow.viewAngle / 2, false);
 
-        Vector2 viewAngleA = fow.DirFromAngle(-fow.viewAngle / 2, false);
-        Vector2 viewAngleB = fow.DirFromAngle(fow.viewAngle / 2, false);
-
-        Vector2 fotPos = fow.transform.position;
-
-        Handles.DrawLine(fotPos, fotPos + viewAngleA * fow.viewRadius);
-        Handles.DrawLine(fotPos, fotPos + viewAngleB * fow.viewRadius);
+        Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleA * fow.viewRadius);
+        Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleB * fow.viewRadius);
 
         Handles.color = Color.red;
         foreach (Transform visibleTarget in fow.visibleTargets)
