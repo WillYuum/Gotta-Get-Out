@@ -12,7 +12,7 @@ public class GameLoopManager : MonoBehaviourSingleton<GameLoopManager>
     public void StartGameLoop()
     {
         print("Game loop started");
-        
+
         GameIsOn = true;
     }
 
