@@ -32,8 +32,12 @@ namespace Chaser
 
         void Update()
         {
-            fowVision.SetOrigin(transform.position);
-            fowVision.SetAimDirection(transform.parent.forward);
+            Transform target = transform.parent;
+
+            fowVision.SetOrigin(target.position);
+
+            Vector3 forwardDir = (target.position + Vector3.forward) - target.position;
+            fowVision.SetAimDirection(forwardDir);
         }
 
 
@@ -71,9 +75,9 @@ namespace Chaser
             {
                 Transform target = targetsInViewRadius[i].transform;
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
-                if (Vector2.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+                if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
-                    float dstToTarget = Vector2.Distance(transform.position, target.position);
+                    float dstToTarget = Vector3.Distance(transform.position, target.position);
 
                     if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                     {

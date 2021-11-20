@@ -94,14 +94,14 @@ namespace Chaser
 
         private Vector3 GetVectorFromAngle(float angle)
         {
-            float angleRad = angle * (Mathf.PI / 180f);
+            float angleRad = angle * Mathf.Deg2Rad;
             return new Vector3(Mathf.Sin(angleRad), 0, Mathf.Cos(angleRad));
         }
 
 
         public void SetAimDirection(Vector3 aimDirection)
         {
-            startingAngle = GetAngleFromVectorFloat(aimDirection) + fow.viewAngle / 2;
+            startingAngle = GetAngleFromVectorFloat(aimDirection) + (fow.viewAngle / 2);
         }
 
         private float GetAngleFromVectorFloat(Vector3 dir)
@@ -109,7 +109,6 @@ namespace Chaser
             dir = dir.normalized;
             float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             if (n < 0) n += 360;
-
             return n;
         }
     }
