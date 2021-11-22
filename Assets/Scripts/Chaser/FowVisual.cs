@@ -14,16 +14,18 @@ namespace Chaser
         [SerializeField] private Material lightMaterial;
 
         private float startingAngle;
+        private Transform target;
 
         void Awake()
         {
+            target = transform.parent;
             fow = gameObject.GetComponent<FOW>();
 
             CreateFowVisionMesh();
         }
 
 
-        void LateUpdate()
+        void Update()
         {
             UpdateFowVision();
         }
@@ -41,7 +43,7 @@ namespace Chaser
 
         private void UpdateFowVision()
         {
-            mesh.Clear();
+            // mesh.Clear();
 
             float angle = startingAngle;
 
@@ -53,18 +55,23 @@ namespace Chaser
 
             int vertexIndex = 1;
             int triangleIndex = 0;
+
             for (int i = 0; i <= rayCount; i++)
             {
                 Vector3 vertex;
-                Vector3 dirFromAngle = GetVectorFromAngle(angle);
+                Vector3 dirFromAngle = GetVectorFromAngle(angle, false);
 
-                if (Physics.Raycast(origin, dirFromAngle, out RaycastHit hitInfo, fow.viewRadius))
+                Vector3 globalDir = GetVectorFromAngle(angle, true);
+
+                Debug.DrawRay(origin, globalDir, Color.red);
+                if (Physics.Raycast(origin, globalDir, out RaycastHit hitInfo, fow.viewRadius))
                 {
-                    vertex = hitInfo.point - transform.position;
+                    vertex = hitInfo.point;
+                    vertex.y = 0;
                 }
                 else
                 {
-                    vertex = (origin - transform.position) + dirFromAngle * fow.viewRadius;
+                    vertex = dirFromAngle * fow.viewRadius;
                 }
 
                 vertices[vertexIndex] = vertex;
@@ -92,16 +99,20 @@ namespace Chaser
             origin = _origin;
         }
 
-        private Vector3 GetVectorFromAngle(float angle)
+        private Vector3 GetVectorFromAngle(float angleInDegs, bool yes)
         {
-            float angleRad = angle * Mathf.Deg2Rad;
+            if (yes)
+            {
+                angleInDegs += target.eulerAngles.y;
+            }
+            float angleRad = angleInDegs * Mathf.Deg2Rad;
             return new Vector3(Mathf.Sin(angleRad), 0, Mathf.Cos(angleRad));
         }
 
 
         public void SetAimDirection(Vector3 aimDirection)
         {
-            startingAngle = GetAngleFromVectorFloat(aimDirection) + (fow.viewAngle / 2);
+            startingAngle = GetAngleFromVectorFloat(aimDirection) + fow.viewAngle / 2;
         }
 
         private float GetAngleFromVectorFloat(Vector3 dir)

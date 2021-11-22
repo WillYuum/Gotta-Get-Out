@@ -25,16 +25,16 @@ namespace Chaser
         [HideInInspector]
         public List<Transform> visibleTargets;
 
+        private Transform target;
         void Awake()
         {
+            target = transform.parent;
             visibleTargets = new List<Transform>();
         }
 
         void Update()
         {
-            Transform target = transform.parent;
-
-            fowVision.SetOrigin(target.position);
+            fowVision.SetOrigin(target.localPosition);
 
             Vector3 forwardDir = (target.position + Vector3.forward) - target.position;
             fowVision.SetAimDirection(forwardDir);

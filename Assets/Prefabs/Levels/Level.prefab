@@ -104,6 +104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 2336036069933514810, guid: 630d2e34c3fd5f443b5e605798dd5730, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6693968041614382084, guid: 630d2e34c3fd5f443b5e605798dd5730, type: 3}
       propertyPath: m_Center.y
       value: 1.07
