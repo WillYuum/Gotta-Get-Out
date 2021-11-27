@@ -36,7 +36,7 @@ public class Player : MonoBehaviourSingleton<Player>
         float horizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float vertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-        transform.position += new Vector3(horizontal, 0, vertical);
+        transform.position += new Vector3(vertical, 0, -horizontal);
 
         dashDelayer.IncrementTimer(out bool isFinishedDelay);
 
