@@ -43,7 +43,7 @@ namespace Chaser
 
         private void UpdateFowVision()
         {
-            // mesh.Clear();
+            mesh.Clear();
 
             float angle = startingAngle;
 
@@ -66,7 +66,13 @@ namespace Chaser
                 Debug.DrawRay(origin, globalDir, Color.red);
                 if (Physics.Raycast(origin, globalDir, out RaycastHit hitInfo, fow.viewRadius))
                 {
-                    vertex = hitInfo.point;
+                    vertex = hitInfo.point - transform.parent.position;
+
+                    // Vector3 rot = transform.parent.eulerAngles;
+                    // rot.x -= transform.parent.eulerAngles.x;
+                    // rot.y -= transform.parent.eulerAngles.y;
+                    // rot.z -= transform.parent.eulerAngles.z;
+                    // vertex = hitInfo.transform.eulerAngles - transform.parent.eulerAngles;
                     vertex.y = 0;
                 }
                 else

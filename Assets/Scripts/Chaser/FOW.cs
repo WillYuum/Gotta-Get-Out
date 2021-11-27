@@ -34,17 +34,17 @@ namespace Chaser
 
         void Update()
         {
-            fowVision.SetOrigin(target.localPosition);
+            fowVision.SetOrigin(target.position);
 
             Vector3 forwardDir = (target.position + Vector3.forward) - target.position;
-            fowVision.SetAimDirection(forwardDir);
+            fowVision.SetAimDirection(forwardDir.normalized);
         }
 
 
         public void EnableFOW()
         {
             gameObject.SetActive(true);
-            StartCoroutine(nameof(FindTargetsWithDelay), delayToFindTarget);
+            // StartCoroutine(nameof(FindTargetsWithDelay), delayToFindTarget);
         }
 
         public void DisableFOW()
@@ -67,7 +67,10 @@ namespace Chaser
         private void FindVisibleTargets()
         {
             visibleTargets.Clear();
-            Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask.value);
+            Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask.value);
+
+            // print("targetsInViewRadius " + targetsInViewRadius.Length);
+            // Physics.OverlapSphere
 
             bool caughtTarget = false;
 
