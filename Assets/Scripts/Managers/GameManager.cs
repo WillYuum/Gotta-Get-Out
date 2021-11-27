@@ -15,10 +15,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     void Awake()
     {
-        //FIXME: Should remove this!
-        GameLoopManager.instance.StartGameLoop();
-
-        hasPlayedTutorial = true;
+        hasPlayedTutorial = false;
         MapController.instance.onCreateNewPlatform += OnStartGame;
     }
 

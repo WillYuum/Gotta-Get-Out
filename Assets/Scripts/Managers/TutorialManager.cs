@@ -53,7 +53,12 @@ namespace Tutorial
 
         private void SetTutorialOnLevel(Level level)
         {
-            tutorialNodes[tutorialNodeIndex].transform.position = level.transform.position;
+            Vector3 tutorialYPos = tutorialNodes[tutorialNodeIndex].transform.position;
+
+            //Ypos is adjusted in scene
+            tutorialYPos.x = level.transform.position.x;
+            tutorialYPos.z = level.transform.position.z;
+            tutorialNodes[tutorialNodeIndex].transform.position = tutorialYPos;
         }
 
         private void EndTutorialMode()
