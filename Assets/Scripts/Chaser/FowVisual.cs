@@ -35,7 +35,7 @@ namespace Chaser
             mesh = new Mesh();
             angleIncrements = fow.viewAngle / (rayCount);
 
-            gameObject.GetComponent<MeshFilter>().mesh = mesh;
+            mesh = gameObject.GetComponent<MeshFilter>().mesh;
             gameObject.GetComponent<MeshRenderer>().material = lightMaterial;
 
             origin = Vector3.zero;
@@ -66,13 +66,7 @@ namespace Chaser
                 Debug.DrawRay(origin, globalDir, Color.red);
                 if (Physics.Raycast(origin, globalDir, out RaycastHit hitInfo, fow.viewRadius))
                 {
-                    vertex = hitInfo.point - transform.parent.position;
-
-                    // Vector3 rot = transform.parent.eulerAngles;
-                    // rot.x -= transform.parent.eulerAngles.x;
-                    // rot.y -= transform.parent.eulerAngles.y;
-                    // rot.z -= transform.parent.eulerAngles.z;
-                    // vertex = hitInfo.transform.eulerAngles - transform.parent.eulerAngles;
+                    vertex = target.InverseTransformPoint(hitInfo.point);
                     vertex.y = 0;
                 }
                 else
@@ -98,6 +92,9 @@ namespace Chaser
             mesh.vertices = vertices;
             mesh.uv = uv;
             mesh.triangles = triangles;
+
+            mesh.RecalculateNormals();
+            mesh.Optimize();
         }
 
         public void SetOrigin(Vector3 _origin)
@@ -105,13 +102,13 @@ namespace Chaser
             origin = _origin;
         }
 
-        private Vector3 GetVectorFromAngle(float angleInDegs, bool yes)
+        private Vector3 GetVectorFromAngle(float angleInDegs, bool angleIsGlobal)
         {
-            if (yes)
+            if (angleIsGlobal)
             {
                 angleInDegs += target.eulerAngles.y;
             }
-            float angleRad = angleInDegs * Mathf.Deg2Rad;
+            float angleRad = (angleInDegs * Mathf.Deg2Rad);
             return new Vector3(Mathf.Sin(angleRad), 0, Mathf.Cos(angleRad));
         }
 
