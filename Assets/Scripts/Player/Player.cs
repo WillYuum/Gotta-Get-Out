@@ -36,7 +36,10 @@ public class Player : MonoBehaviourSingleton<Player>
         float horizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float vertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-        transform.position += new Vector3(vertical, 0, -horizontal);
+
+        Vector3 moveDir = new Vector3(vertical, 0, -horizontal);
+
+        transform.position += moveDir;
 
         dashDelayer.IncrementTimer(out bool isFinishedDelay);
 
@@ -65,7 +68,9 @@ public class Player : MonoBehaviourSingleton<Player>
                         horizontal = 1;
                     }
 
-                    rb.velocity = new Vector3(horizontal, 0, vertical) * dashForce;
+                    print("Dashing");
+
+                    rb.velocity = moveDir * dashForce;
                     dashDelayer.ResetTimer();
                     StartCoroutine(StopDashEffect(.3f));
                 }
