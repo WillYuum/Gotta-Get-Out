@@ -15,4 +15,15 @@ public class PlayerModelController : MonoBehaviour
     {
 
     }
+
+    public void PlayIdleAnimation()
+    {
+        animator.SetTrigger("Idle");
+    }
+
+
+    public void PlayerRunAnimation()
+    {
+        animator.SetTrigger("Run");
+    }
 }

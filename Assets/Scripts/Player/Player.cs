@@ -15,12 +15,16 @@ public class Player : MonoBehaviourSingleton<Player>
     [SerializeField] private DelayController dashDelayer;
     [SerializeField] private float moveSpeed = 3.0f;
 
+    [SerializeField] private PlayerModelController playerModelController;
+
     private Rigidbody rb;
 
+    private bool isMoving = false;
 
     void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        isMoving = false;
     }
 
 
@@ -31,7 +35,10 @@ public class Player : MonoBehaviourSingleton<Player>
 
     private void HandlePlayerMovement()
     {
+        dashDelayer.IncrementTimer(out bool isFinishedDelay);
+
         if (canMove == false) return;
+
 
         float horizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float vertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
@@ -39,13 +46,34 @@ public class Player : MonoBehaviourSingleton<Player>
 
         Vector3 moveDir = new Vector3(vertical, 0, -horizontal);
 
+        bool isPressedMoveKey = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+
+        //TODO: Need to add state machine to handle this
+        if (isPressedMoveKey)
+        {
+            if (isMoving == false)
+            {
+                playerModelController.PlayerRunAnimation();
+                isMoving = true;
+            }
+        }
+        else
+        {
+            if (isMoving)
+            {
+                playerModelController.PlayIdleAnimation();
+                isMoving = false;
+            }
+        }
+
+        // if (isMoving == false) return;
+
         transform.position += moveDir;
 
-        dashDelayer.IncrementTimer(out bool isFinishedDelay);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            bool isPressedMoveKey = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+            // bool isPressedMoveKey = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
             if (isPressedMoveKey)
             {
                 if (isFinishedDelay)
