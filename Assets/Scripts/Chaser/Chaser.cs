@@ -9,6 +9,9 @@ namespace Chaser
         [SerializeField] private FOW fow;
         private bool isTryingToCatchPlayer = false;
 
+
+        private float minDistToCatchPlayer = 0.25f;
+
         void Awake()
         {
             fow.EnableFOW();
@@ -28,6 +31,7 @@ namespace Chaser
 
         private void InvokeSawPlayer()
         {
+            fow.DisableFOW();
             fow.onCaughtTarget -= InvokeSawPlayer;
             isTryingToCatchPlayer = true;
         }
@@ -35,15 +39,15 @@ namespace Chaser
         private void HandleCatchPlayer()
         {
             Transform playerTransform = Player.instance.transform;
-            transform.up = playerTransform.position - transform.position;
+            transform.forward = playerTransform.position - transform.position;
 
-            if (Vector3.Distance(transform.position, playerTransform.position) < 1f)
+            if (Vector3.Distance(transform.position, playerTransform.position) < minDistToCatchPlayer)
             {
                 GameLoopManager.instance.LoseGame();
             }
             else
             {
-                transform.position = Vector2.Lerp(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
             }
         }
     }

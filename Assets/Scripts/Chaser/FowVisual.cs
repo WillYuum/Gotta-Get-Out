@@ -63,7 +63,7 @@ namespace Chaser
 
                 Vector3 globalDir = GetVectorFromAngle(angle, true);
 
-                Debug.DrawRay(origin, globalDir, Color.red);
+                // Debug.DrawRay(origin, globalDir, Color.red);
                 if (Physics.Raycast(origin, globalDir, out RaycastHit hitInfo, fow.viewRadius))
                 {
                     vertex = target.InverseTransformPoint(hitInfo.point);

@@ -7,6 +7,9 @@ namespace Chaser
 {
     public class FOW : MonoBehaviour
     {
+
+        private bool fowIsActive = false;
+
         [SerializeField] public float viewRadius;
         [Range(0, 360)]
         [SerializeField] public float viewAngle;
@@ -44,12 +47,14 @@ namespace Chaser
         public void EnableFOW()
         {
             gameObject.SetActive(true);
-            // StartCoroutine(nameof(FindTargetsWithDelay), delayToFindTarget);
+            fowIsActive = true;
+            StartCoroutine(nameof(FindTargetsWithDelay), delayToFindTarget);
         }
 
         public void DisableFOW()
         {
             gameObject.SetActive(false);
+            fowIsActive = false;
             StopCoroutine(nameof(FindTargetsWithDelay));
         }
 
@@ -57,7 +62,7 @@ namespace Chaser
 
         IEnumerator FindTargetsWithDelay(float delay)
         {
-            while (GameLoopManager.instance.GameIsOn)
+            while (fowIsActive)
             {
                 yield return new WaitForSeconds(delay);
                 FindVisibleTargets();
@@ -69,8 +74,6 @@ namespace Chaser
             visibleTargets.Clear();
             Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask.value);
 
-            // print("targetsInViewRadius " + targetsInViewRadius.Length);
-            // Physics.OverlapSphere
 
             bool caughtTarget = false;
 

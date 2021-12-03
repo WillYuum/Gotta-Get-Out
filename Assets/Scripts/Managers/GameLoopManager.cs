@@ -5,8 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class GameLoopManager : MonoBehaviourSingleton<GameLoopManager>
 {
+    [SerializeField] private bool _gameIsOn;
+    public bool GameIsOn
+    {
+        get
+        {
+            return _gameIsOn;
+        }
+        private set
+        {
+            _gameIsOn = value;
+        }
+    }
 
-    public bool GameIsOn { get; private set; }
 
 
     public void StartGameLoop()
