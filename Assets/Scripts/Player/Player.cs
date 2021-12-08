@@ -69,7 +69,9 @@ public class Player : MonoBehaviourSingleton<Player>
         // if (isMoving == false) return;
 
         transform.position += moveDir;
-
+        // transform.forward = moveDir;
+        if (isMoving)
+            transform.forward = moveDir;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
