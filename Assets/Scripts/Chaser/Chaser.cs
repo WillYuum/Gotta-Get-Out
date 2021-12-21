@@ -38,17 +38,25 @@ namespace Chaser
 
         private void HandleCatchPlayer()
         {
-            Transform playerTransform = Player.instance.transform;
-            transform.forward = playerTransform.position - transform.position;
+            print("Moving towards player");
+            Transform targetTransform = Player.instance.transform;
 
-            if (Vector3.Distance(transform.position, playerTransform.position) < minDistToCatchPlayer)
+            RotateTowardTarget(targetTransform.position);
+
+            if (Vector3.Distance(transform.position, targetTransform.position) < minDistToCatchPlayer)
             {
                 GameLoopManager.instance.LoseGame();
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, targetTransform.position, moveSpeed * Time.deltaTime);
             }
+        }
+
+        private void RotateTowardTarget(Vector3 target)
+        {
+            target = new Vector3(target.x, transform.position.y, target.z);
+            transform.LookAt(target);
         }
     }
 }
