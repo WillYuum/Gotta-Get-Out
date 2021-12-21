@@ -85,7 +85,9 @@ namespace Chaser
                 {
                     float dstToTarget = Vector3.Distance(transform.position, target.position);
 
-                    if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                    bool isTargetVisible = !Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask);
+
+                    if (isTargetVisible)
                     {
                         visibleTargets.Add(target);
                         caughtTarget = true;

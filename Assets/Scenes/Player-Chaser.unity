@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 1819773028177631778, guid: b68a4af9da86e0d4ebeed0b791b8d42c, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1819773028177631779, guid: b68a4af9da86e0d4ebeed0b791b8d42c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -235,41 +239,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3157665958753545282, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3157665958753545282, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
-      propertyPath: m_SpotAngle
-      value: 85
-      objectReference: {fileID: 0}
-    - target: {fileID: 3157665958753545282, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
-      propertyPath: m_InnerSpotAngle
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3485346503021711250, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081000713138635337, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081000713138635337, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.173
-      objectReference: {fileID: 0}
-    - target: {fileID: 8292666996085676290, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8292666996461507810, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
-      propertyPath: moveSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8292666996461507811, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
       propertyPath: m_Name
       value: Chaser
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292666996461507812, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
+      propertyPath: m_Constraints
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8292666996461507813, guid: 849b4d05d8e889a4dbb1f500abc31524, type: 3}
       propertyPath: m_RootOrder
@@ -936,8 +912,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145045224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26, y: 0.172, z: 1.46}
-  m_LocalScale: {x: 0.2, y: 0.29556397, z: 0.2}
+  m_LocalPosition: {x: 0.235, y: 0.172, z: 1.46}
+  m_LocalScale: {x: 0.50934, y: 0.29556397, z: 0.2}
   m_Children: []
   m_Father: {fileID: 444312999}
   m_RootOrder: 4
