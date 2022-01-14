@@ -27,14 +27,8 @@ public class Player : MonoBehaviourSingleton<Player>
         isMoving = false;
     }
 
-    [SerializeField] private Transform pewpew;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            pewpew.DOShakeScale(0.5f, 0.5f);
-        }
-
         HandlePlayerMovement();
     }
 
